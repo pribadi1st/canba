@@ -17,8 +17,13 @@ function RegisterPage() {
         message: "invalid email address"
     }
     const submitForm = (form: FormData) => {
-        console.log(form, "form")
-        console.log(formError, "formError")
+        console.log("Hello world")
+        return new Promise<void>(resolve => {
+            setTimeout(() => {
+                console.log(form, "Form")
+                resolve();
+            }, 2000)
+        })
     }
 
     const validatePassword = (val: string) => {
@@ -153,9 +158,12 @@ function RegisterPage() {
                         <div>
                             <button
                                 type="submit"
+                                disabled={isSubmitting}
                                 className="flex w-full justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                             >
-                                Create Account
+                                {isSubmitting ? "Loading" :
+                                    "Create Account"
+                                }
                             </button>
                         </div>
                     </form>
